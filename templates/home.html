@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Disorder Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='script/script.js') }}"></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>Sleep Disorder Prediction</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#upload">Upload</a></li>
+                <li><a href="#results">Results</a></li>
+            </ul>
+        </nav>
+    </header>
+
+        <!-- Hero Section -->
+        <section id="hero">
+            <h2>Welcome to the Sleep Disorder Prediction System</h2>
+            <p>Our system uses machine learning to predict the likelihood of sleep disorders based on your sleep data.</p>
+            <p>Start by uploading your sleep data or medical records and get insights into your sleep health.</p>
+            <a href="#upload" class="cta-btn">Upload Your Data</a>
+        </section>
+    
+        <!-- About Section -->
+        <section id="about">
+            <h2>About the Project</h2>
+            <p>This project uses advanced machine learning algorithms to classify sleep disorders such as insomnia and sleep apnea. With the help of our model, we aim to improve the accuracy and efficiency of sleep disorder diagnosis.</p>
+            
+            <h3>Key Features:</h3>
+            <ul>
+                <li><strong>Accurate Predictions:</strong> Classifies various sleep disorders with an accuracy surpassing 92%.</li>
+                <li><strong>Data-Driven Insights:</strong> Uses a dataset with 1,500 records and 13 features, including sleep patterns, lifestyle, and health indicators.</li>
+                <li><strong>Multiple Algorithms:</strong> Implements a range of machine learning models such as Decision Tree, Support Vector Machine, Random Forest, Gradient Boosting, and Artificial Neural Networks.</li>
+                <li><strong>User-Friendly Interface:</strong> Easy to use for anyone interested in understanding sleep-related issues.</li>
+            </ul>
+    
+            <h3>How It Works:</h3>
+            <ul>
+                <li><strong>Data Preprocessing:</strong> We clean and normalize the data, ensuring it's ready for analysis.</li>
+                <li><strong>Feature Extraction:</strong> Important features like blood pressure, heart rate, and sleep duration are carefully extracted and used.</li>
+                <li><strong>Machine Learning Models:</strong> Multiple models are trained and tested to ensure accurate predictions.</li>
+                <li><strong>Prediction:</strong> Based on your inputs, the model predicts whether you might be at risk for certain sleep disorders.</li>
+            </ul>
+    
+            <h3>Why Sleep Disorders Matter:</h3>
+            <p>Sleep disorders affect millions worldwide, leading to poor health, productivity issues, and overall quality of life. Early detection and proper diagnosis are key to improving your sleep health.</p>
+        </section>
+
+    <!-- Upload Form Section -->
+    <section id="upload">
+        <h2>Upload Sleep Data</h2>
+        <p>Fill out the form below with your sleep and medical data, and our system will provide insights into your sleep patterns.</p>
+        
+        <form id="upload-form" action="/submit-data" method="POST">
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="0" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="occupation">Occupation:</label>
+                <select id="occupation" name="occupation" required>
+                    <option value="" disabled selected>Select Occupation</option>
+                    <option value="Software Engineer">Software Engineer</option>
+                    <option value="Doctor">Doctor</option>
+                    <option value="Sales Representative">Sales Representative</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Nurse">Nurse</option>
+                    <option value="Engineer">Engineer</option>
+                    <option value="Accountant">Accountant</option>
+                    <option value="Scientist">Scientist</option>
+                    <option value="Lawyer">Lawyer</option>
+                    <option value="Salesperson">Salesperson</option>
+                    <option value="Manager">Manager</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="sleep_duration">Sleep Duration (hours):</label>
+                <input type="number" id="sleep_duration" name="sleep_duration" min="0" step="0.1" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="sleep_quality">Quality of Sleep (1-10):</label>
+                <input type="number" id="sleep_quality" name="sleep_quality" min="1" max="10" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="physical_activity">Physical Activity Level (1-100):</label>
+                <input type="number" id="physical_activity" name="physical_activity" min="1" max="100" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="stress_level">Stress Level (1-10):</label>
+                <input type="number" id="stress_level" name="stress_level" min="1" max="10" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="bmi_category">BMI Category:</label>
+                <select id="bmi_category" name="bmi_category" required>
+                    <option value="" disabled selected>Select BMI Category</option>
+                    <option value="Overweight">Overweight</option>
+                    <option value="Normal">Normal</option>
+                    <option value="Obese">Obese</option>
+                    <option value="Normal Weight">Normal Weight</option>
+                </select>
+            </div>
+    
+            <!-- <div class="form-group" id="blood-pressure-group">
+                <label for="blood_pressure">Blood Pressure:</label>
+                <select id="blood_pressure" name="blood_pressure" required>
+                    <option value="" disabled selected>Select Blood Pressure</option>
+                    
+                    <option value="126/83">126/83</option>
+                    <option value="125/80">125/80</option>
+                    <option value="140/90">140/90</option>
+                    <option value="120/80">120/80</option>
+                    <option value="132/87">132/87</option>
+                    <option value="117/76">117/76</option>
+                    <option value="130/88">130/88</option>
+                    <option value="129/82">129/82</option>
+                    <option value="140/77">140/77</option>
+                    <option value="129/80">129/80</option>
+                </select>
+            </div> -->
+            <div class="form-group" id="blood-pressure-group">
+                <label for="blood_pressure">Blood Pressure (e.g., 120/80):</label>
+                <input type="text" id="blood_pressure" name="blood_pressure" 
+                       pattern="^\d{2,3}/\d{2,3}$" 
+                       title="Please enter in the format 120/80" 
+                       required>
+            </div>
+            
+            <div class="form-group">
+                <label for="heart_rate">Heart Rate (bpm):</label>
+                <input type="number" id="heart_rate" name="heart_rate" min="30" max="200" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="daily_steps">Daily Steps:</label>
+                <input type="number" id="daily_steps" name="daily_steps" min="0" required>
+            </div>
+    
+            <button type="submit" class="cta-btn-upload">Submit Data</button>
+        </form>
+    </section>
+    <!-- <section id="results">
+        <h2>Your Prediction Results</h2>
+        {% if message %}
+        <p><strong>Prediction:</strong> {{ message }}</p>
+        {% else %}
+        <p>No prediction data available yet. Please upload your sleep data for analysis.</p>
+        {% endif %}
+    </section> -->
+    <section id="results">
+        <h2>Sleep Disorder Prediction Results</h2>
+        {% if message %}
+            <h3>Input Data</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Parameter</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key, value in input_data.items() %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ key }}</td>
+                            <td>{{ value }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="prediction-container">
+                <strong>Prediction :</strong>
+                <p class="result-message">{{ message }}</p>
+            </div>
+        {% else %}
+            <p class="no-data-message">No prediction data available yet. Please upload your sleep data for analysis.</p>
+        {% endif %}
+    </section>
+    
+    
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Sleep Disorder Prediction. All rights reserved TO SVEC_CSE(DATA_SCIENCE_TEAM_8)</p>
+    </footer>
+</body>
+</html>
+
+
